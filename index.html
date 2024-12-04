@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+
+  <!-- <meta http-equiv="x-ua-compatible" content="ie=edge"> -->
+
+  <title>Diverse Score Distillation</title>
+
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- mirror: F0%9F%AA%9E&lt -->
+
+  <link rel="stylesheet" type="text/css" href="./style/slick.css">
+  <link rel="stylesheet" type="text/css" href="./style/slick-theme.css">
+  <link rel="stylesheet" href="./style/bulma.min.css">
+  <link rel="stylesheet" href="./style/bulma-slider.min.css">
+  <link rel="stylesheet" href="./style/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./style/bootstrap.min.css">
+  <link rel="stylesheet" href="./style/font-awesome.min.css">
+  <link rel="stylesheet" href="./style/codemirror.min.css">
+  <link rel="stylesheet" href="./style/app.css">
+  <link rel="stylesheet" href="./style/index.css">
+  <link rel="stylesheet" href="./style/select.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="resources/glide.core.min.css">
+  <link rel="stylesheet" href="resources/glide.theme.min.css">
+  <link rel="stylesheet" href="resources/glide-custom.css">
+  <script src="resources/handlers.js"></script>
+  <script src="./style/jquery.min.js"></script>
+  <script src="./style/bootstrap.min.js"></script>
+  <script src="./style/codemirror.min.js"></script>
+  <script src="./style/clipboard.min.js"></script>
+  <script src="./style/video_comparison.js"></script>
+  <script src="./style/select.js"></script>
+  <script src="./style/bulma-slider.min.js"></script>
+  <script src="./style/bulma-carousel.min.js"></script>
+  <!-- <script src="./style/app.js"></script> -->
+  <script src="./style/index.js"></script>
+  <!-- <script src="./style/slick.js"></script> -->
+
+  <script src="resources/glide.min.js"></script>
+  <script>
+    window.onload = function () {
+      new Glide("#dynamic-carousel", {
+        type: "carousel",
+        perView: 1.68,
+        focusAt: "center",
+        autoplay: 20000,
+        hoverpause: true
+      }).mount();
+      new Glide("#static-carousel", {
+        type: "carousel",
+        perView: 1.68,
+        focusAt: "center",
+        autoplay: 3000,
+        hoverpause: true
+      }).mount();
+      new Glide("#realtime-carousel", {
+        type: "carousel",
+        perView: 2.05,
+        focusAt: "center",
+        autoplay: 3000,
+        hoverpause: true
+      }).mount();
+    };
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ6PES7EKD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-RZ6PES7EKD');
+  </script>
+</head>
+
+<body>
+  <div class="container" id="header" style="text-align: center; margin: auto;">
+    <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+      <h2 class="col-md-12 text-center" id="title">
+        <b>Diverse Score Distillation</b>
+      </h2>
+      <!-- <h3 class="col-md-12 text-center" id="title">
+        <b>ICCV</b>2023<br>
+      </h3> -->
+    </div>
+  </div>
+  <script>
+  </script>
+  <div class="container" id="main">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 text-center">
+        <ul class="list-inline">
+          <li> <a href="https://yanbo-xu.netlify.app/">Yanbo Xu<sup>1</sup></a> </li>
+          <li> <a href="https://scholar.google.com/citations?user=HtNfeKYAAAAJ&hl=en"> Jayanth Srinivasa<sup>2</sup></a> </li>
+          <li> <a href="https://scholar.google.com/citations?user=NIv_aeQAAAAJ&hl=en">Gaowen Liu<sup>2</sup></a> </li>
+          <li> <a href="https://shubhtuls.github.io">Shubham Tulsiani<sup>1</sup></a> </li>
+        </ul>
+        <ul class="list-inline">
+          <li> <sup>1</sup>Carnegie Mellon University </li>
+          <li> <sup>2</sup>Cisco Research </li>
+          <br />
+          <!-- <li> <sup>*</sup> Equal Contribution</li> -->
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <span class="link-block">
+          <a href="" class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas"
+                data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z">
+                </path>
+              </svg><!-- <i class="fas fa-file-pdf"></i> Font Awesome fontawesome.com -->
+            </span>
+            <span>Paper</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href=""
+            class="external-link button is-normal is-rounded is-dark">
+            <span class="icon">
+              <svg class="svg-inline--fa fa-github fa-w-16" aria-hidden="true" focusable="false" data-prefix="fab"
+                data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+                <path fill="currentColor"
+                  d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z">
+                </path>
+              </svg><!-- <i class="fab fa-github"></i> Font Awesome fontawesome.com -->
+            </span>
+            <span>Code</span>
+          </a>
+        </span>
+      </div>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 text-center">
+        <video id="garden-v1" width="100%" playsinline="" autoplay="" loop="" muted=""
+          poster="style/loading.gif">
+          <source src="dsd_videos/teaser_diverse_v1.1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+          <!-- Abstract. -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified">
+                <p>
+                    Score distillation of 2D diffusion models has proven to be a powerful mechanism 
+                    to guide 3D optimization, for example enabling text-based 3D generation or single-view 
+                    reconstruction. A common limitation of existing score distillation formulations, however, 
+                    is that the outputs of the (mode-seeking) optimization are limited in diversity despite 
+                    the underlying diffusion model being capable of generating diverse samples. In this work, 
+                    inspired by the sampling process in denoising diffusion, we propose a score formulation for 
+                    that guides the optimization to follow generation paths defined by random initial seeds, 
+                    thus ensuring diversity. We then present an approximation to adopt this formulation for 
+                    scenarios where the optimization may not precisely follow the generation paths (e.g. a 
+                    3D representation whose renderings evolve in a co-dependent manner). We showcase the 
+                    applications of our `Diverse Score Distillation' (DSD) formulation across tasks such as 
+                    2D optimization, text-based 3D inference, and single-view reconstruction. We also 
+                    empirically validate DSD against prior score distillation formulations and show that 
+                    it significantly improves sample diversity while preserving fidelity.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--/ Abstract. -->
+      
+        </div>
+    </section>
+
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Method -->
+            <div class="columns is-centered">
+                <div class="column is-full-width">
+                    <h2 class="title is-3">Method</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            While the DDIM process follows (ODE-based) trajectories for the noisy image, there are also 
+                            induced trajectories in one-step prediction and predicted noise space. By viewing the score distillation as a process in the one-step prediction space and keep track of a defined DDIM ODE, 
+                            we can guide the optimization to follow the defined ODE. Therefore, we can ensure the diversity of the generated samples by 
+                            ensure diversity of the underlying ODE trajectories, which are defined by the initial noise. 
+                        </p>
+                        <!-- <p>
+                        By viewing the score distillation as a process in the one-step prediction space and keep track of a defined DDIM ODE, 
+                            we can guide the optimization to follow the defined ODE. Therefore, we can ensure the diversity of the generated samples by 
+                            ensure diversity of the underlying ODE trajectories, which are defined by the initial noise. 
+                        </p> -->
+                    </div>
+                    <center>
+                        <img src="./images/ddim.png" class="img-responsive" alt="overview" width="80%"
+                        style="max-height: 450px;margin:auto;">
+                    </center>
+                    <div class="content has-text-justified">
+                        <p>
+                            In 2D, our method can simulate the ODE trajectories and generate diverse images. When the number of DDIM steps is euqal to the 
+                            number of optimization steps, the generated images is identical to the DDIM generated images. When not, the generated images are still 
+                            smilar to the DDIM generated images and are more diverse compared other methods. 
+
+                        </p>
+                    </div>
+                    <center>
+                        <img src="./images/2D sample.png" class="img-responsive" alt="overview" width="80%"
+                        style="max-height: 450px;margin:auto;">
+                    </center>
+
+                   
+                    <div class="content has-text-justified">
+                        <p>
+                          <br><br>
+                            In 3D, however, 3D shape may not follow the 2D DDIM ODE exactly. Therefore, we propose an approximation (via interpolation) to adopt 
+                            this formulation for 3D generation. In particular, a unique ODE starting point ε is assigned to each 3D shape throughout the optimization process. 
+                            Renderings from different views are assumed to be on the view-conditioned ODE, starting from ε. 
+                            At each iteration, DSD simulates the corresponding ODE up to time t and obtains noise prediction ε(t) from the ODE. 
+                            The rendered view is connected to the ODE by an interpolation approximation, which is then used to obtain the gradient.
+                        </p>
+                    </div>
+                    <center>
+                        <img src="./images/method.png" class="img-responsive" alt="overview" width="80%"
+                        style="max-height: 450px;margin:auto;">
+                    </center>
+                </div>
+            </div>
+
+            
+
+            <!-- Comparison -->
+            <div class="column is-full-width">
+                <h2 class="title is-3">Comparison</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        We compare our method with other score distllation methods. DSD generates more diverse samples while
+                        have similar (better) quality.
+                    </p>
+                </div>
+                <div class="glide" id="dynamic-carousel">
+                    <div class="glide__track" data-glide-el="track">
+                    <ul class="glide__slides">
+                        
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/Mini Garden, highly detailed, 8K, HD.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/a toy robot.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/pumpkin head zombie, skinny, highly detailed, phot.mp4" type="video/mp4" />
+                            </video>
+                        </li> 
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/a photo of a policeman.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/Baby dragon hatching out of a stone egg.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A DSLR photo of a Space Shuttle.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A plush dragon toy.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A car made out of sushi.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A highly detailed sand castle.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/Michelangelo style statue of an astronaut.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A hotdog in a tutu skirt.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/A chimpanzee dressed like a human.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                        <li class="glide__slide">
+                            <video autoplay controls muted loop playsinline height="100%">
+                            <source src="dsd_videos/comparisons/renaissance-style oil painting of a poor man.mp4" type="video/mp4" />
+                            </video>
+                        </li>
+                    </ul>
+                    </div>
+                    <div class="glide__arrows" data-glide-el="controls">
+                    <span class="glide__arrow glide__arrow--left" data-glide-dir="<"><img
+                        src="resources/arrow-left-circle-fill.svg" /></span>
+                    <span class="glide__arrow glide__arrow--right" data-glide-dir=">"><img
+                        src="resources/arrow-right-circle-fill.svg" /></span>
+                    </div>
+                    <div class="glide__bullets" data-glide-el="controls[nav]">
+                    <span class="glide__bullet" data-glide-dir="=0"></span>
+                    <span class="glide__bullet" data-glide-dir="=1"></span>
+                    <span class="glide__bullet" data-glide-dir="=2"></span>
+                    <span class="glide__bullet" data-glide-dir="=3"></span>
+                    <span class="glide__bullet" data-glide-dir="=4"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column is-full-width">
+                <h2 class="title is-3">Diverse Single View Reconstruction</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        Given an input image, the geometry of the underlying 3D shape is highly undetermined. 
+                        With an image and camera-conditioned DM, DSD (Ours) reconstructs high-frequency details of the object with diverse interpretations of the underlying geometry.
+                        The default distillation adopted by Zero-1-to-3 does not yield multi-modal generations and has limited details.
+                    </p>
+                </div>
+                
+                <div class="content has-text-centered">
+                    <video id="replay-video"
+                    autoplay controls muted loop playsinline height
+                          width="100%">
+                      <source src="./dsd_videos/zero123.mp4"
+                              type="video/mp4">
+                    </video>    
+                </div>
+
+            </div>
+
+            <div class="column is-full-width">
+                <h2 class="title is-3">Diverse Generation with MVDream</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        By using a camera-aware diffusion model, such as MVDream, our method can generate diverse 3D shapes without Janus effects.
+                    </p>
+                </div>
+                
+                <div class="content has-text-centered">
+                    <video id="replay-video"
+                    autoplay controls muted loop playsinline height
+                          width="100%">
+                      <source src="./dsd_videos/mvdream_captioned.mp4"
+                              type="video/mp4">
+                    </video>    
+                </div>
+
+            </div>
+        </div>
+    
+        </div>
+
+        </div>
+    
+    <!-- Reference -->
+    <!-- <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <div class="col-md-10 col-md-offset-1">
+            <h2 class="title is-3">References</h2>
+            <ol>
+              <li>
+                Victor Schmidt, Alexandra Sasha Luccioni, M ́elisande Teng, Tianyu Zhang, Alexia Reynaud,
+                Sunand Raghupathi, Gautier Cosne,
+                Adrien Juraver, Vahe Vardanyan, Alex Hernandez-Garcia, Yoshua Bengio.
+                Climategan: Raising climate change awareness by generating images of floods. ICLR, 2022.
+                <a href="https://github.com/cc-ai/climategan">[code]</a>
+              </li>
+              <li>
+                Robin Rombach, Andreas Blattmann, Dominik Lorenz, Patrick Esser, and Bj ̈orn Ommer.
+                High-resolution image synthesis with latent diffusion models. In CVPR, 2022.
+                <a href="https://github.com/CompVis/stable-diffusion">[code]</a>
+              </li>
+              <li>
+                Taesung Park, Jun-Yan Zhu, Oliver Wang, Jingwan Lu, Eli Shechtman, Alexei Efros, and Richard
+                Zhang.
+                Swapping autoencoder for deep image manipulation. NeurIPS, 2020.
+                <a href="https://github.com/taesungp/swapping-autoencoder-pytorch">[code]</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+</section>
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+}</code></pre>
+  </div>
+</section> -->
+
+
+<section class="column" id="Acknowledgements"></section>
+  <div class="container is-max-desktop content">
+    <h3 class="title">Acknowledgements</h2>
+    <p>Our code is built on top of <a href="https://lukoianov.com/sdi/" target="_blank">SDI</a> and <a href="https://github.com/threestudio-project/threestudio" target="_blank">Threestudio</a>. 
+     We sincerely appreciate the authors' efforts in their code. </p>
+
+    <!-- <p>We thank Zihan Wang and the members of the Physical Perception Lab at CMU for their valuable discussions. We especially appreciate Amy Lin and Zhizhuo (Z) Zhou for their assistance in creating figures, as well as Yanbo Xu and Jason Zhang for their feedback on the draft. We also thank Hanwen Jiang for his support in setting up the LEAP baseline for comparison.</p>
+
+    <p>This work was supported in part by NSF Award IIS-2345610. This work used Bridges-2 at Pittsburgh Supercomputing Center through allocation CIS240166 from the Advanced Cyberinfrastructure Coordination Ecosystem: Services & Support (ACCESS) program, which is supported by National Science Foundation grants #2138259, #2138286, #2138307, #2137603, and #2138296.
+    </p>
+  </div> -->
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <!-- <h3>
+          Acknowledgements
+        </h3> -->
+        <p>
+        The website template was borrowed from <a href="http://mgharbi.com/">Michaël Gharbi</a>, <A
+          href="https://dorverbin.github.io/refnerf/index.html">RefNeRF</a> , <A
+          href="https://nerfies.github.io/">Nerfies</A> and <A
+          href="https://hhsinping.github.io/svs/supp/visual_comparison.html">Semantic View Synthesis</a>.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/abs/2212.00792">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/zhizdev/sparsefusion" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <!-- <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is made from this template <a href="https://github.com/nerfies/nerfies.github.io">source code</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</footer>
+
+
+
+    
+</body>
+
+</html>
