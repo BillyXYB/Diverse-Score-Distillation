@@ -205,8 +205,9 @@
                     <div class="content has-text-justified">
                         <p>
                             While the DDIM process follows (ODE-based) trajectories for the noisy image, there are also 
-                            induced trajectories in one-step prediction and predicted noise space. By viewing the score distillation as a process in the one-step prediction space and keep track of a defined DDIM ODE, 
-                            we can guide the optimization to follow the defined ODE. Therefore, we can ensure the diversity of the generated samples by 
+                            induced trajectories in one-step prediction and predicted noise space. By viewing the score distillation as a 
+                            process in the one-step prediction space and keeping track of a defined DDIM ODE, 
+                            we can guide the distillation to follow the defined ODE. Therefore, we can ensure the diversity of the generated samples by 
                             ensure diversity of the underlying ODE trajectories, which are defined by the initial noise. 
                         </p>
                         <!-- <p>
@@ -216,13 +217,19 @@
                         </p> -->
                     </div>
                     <center>
-                        <img src="./images/ddim.png" class="img-responsive" alt="overview" width="80%"
-                        style="max-height: 450px;margin:auto;">
+                        <!-- <img src="./images/ddim.png" class="img-responsive" alt="overview" width="80%"
+                        style="max-height: 450px;margin:auto;"> -->
+                        <video id="replay-video"
+                        autoplay controls muted loop playsinline height
+                              width="90%">
+                          <source src="./dsd_videos/ddim.mp4"
+                                  type="video/mp4">
+                        </video>  
                     </center>
                     <div class="content has-text-justified">
                         <p>
                             In 2D, our method can simulate the ODE trajectories and generate diverse images. When the number of DDIM steps is euqal to the 
-                            number of optimization steps, the generated images is identical to the DDIM generated images. When not, the generated images are still 
+                            number of optimization steps, the generated images is identical to the DDIM generated images (DSD*). When not (DSD), the generated images are still 
                             smilar to the DDIM generated images and are more diverse compared other methods. 
 
                         </p>
@@ -382,7 +389,7 @@
                     <video id="replay-video"
                     autoplay controls muted loop playsinline height
                           width="100%">
-                      <source src="./dsd_videos/mvdream_captioned.mp4"
+                      <source src="./dsd_videos/mvdream_captioned_v1.mp4"
                               type="video/mp4">
                     </video>    
                 </div>
