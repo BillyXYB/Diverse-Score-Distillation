@@ -177,7 +177,7 @@
                     reconstruction. A common limitation of existing score distillation formulations, however, 
                     is that the outputs of the (mode-seeking) optimization are limited in diversity despite 
                     the underlying diffusion model being capable of generating diverse samples. In this work, 
-                    inspired by the sampling process in denoising diffusion, we propose a score formulation for 
+                    inspired by the sampling process in denoising diffusion, we propose a score formulation
                     that guides the optimization to follow generation paths defined by random initial seeds, 
                     thus ensuring diversity. We then present an approximation to adopt this formulation for 
                     scenarios where the optimization may not precisely follow the generation paths (e.g. a 
@@ -204,11 +204,11 @@
                     <h2 class="title is-3">Method</h2>
                     <div class="content has-text-justified">
                         <p>
-                            While the DDIM process follows (ODE-based) trajectories for the noisy image, there are also 
-                            induced trajectories in one-step prediction and predicted noise space. By viewing the score distillation as a 
+                            While the DDIM process follows (ODE-based) trajectories for the noisy image, it also induces trajectories 
+                            in the one-step prediction and predicted noise spaces. By viewing the score distillation as a 
                             process in the one-step prediction space and keeping track of a defined DDIM ODE, 
-                            we can guide the distillation to follow the defined ODE. Therefore, we can ensure the diversity of the generated samples by 
-                            ensure diversity of the underlying ODE trajectories, which are defined by the initial noise. 
+                            we can guide the distillation to follow the specified ODE. Therefore, we can ensure the diversity of the generated samples by 
+                            maintaining diversity of the underlying ODE trajectories, which are defined by the initial noise. 
                         </p>
                         <!-- <p>
                         By viewing the score distillation as a process in the one-step prediction space and keep track of a defined DDIM ODE, 
@@ -228,9 +228,11 @@
                     </center>
                     <div class="content has-text-justified">
                         <p>
-                            In 2D, our method can simulate the ODE trajectories and generate diverse images. When the number of DDIM steps is euqal to the 
-                            number of optimization steps, the generated images is identical to the DDIM generated images (DSD*). When not (DSD), the generated images are still 
-                            smilar to the DDIM generated images and are more diverse compared other methods. 
+                          In 2D, our method can simulate ODE trajectories to generate diverse images. 
+                          When the number of DDIM steps equals the number of optimization steps, 
+                          the generated images are identical to the DDIM-generated images (DSD*). 
+                          When the steps differ (DSD), the generated images remain similar to the 
+                          DDIM-generated images but are more diverse compared to other methods.
 
                         </p>
                     </div>
@@ -243,12 +245,14 @@
                     <div class="content has-text-justified">
                         <p>
                           <br><br>
-                            In 3D, however, 3D shape may not follow the 2D DDIM ODE exactly. Therefore, we propose an approximation (via interpolation) to adopt 
-                            this formulation for 3D generation. In particular, a unique ODE starting point ε is assigned to each 3D shape throughout the optimization process. 
-                            Renderings from different views are assumed to be on the view-conditioned ODE, starting from ε. 
-                            At each iteration, DSD simulates the corresponding ODE up to time t and obtains noise prediction ε(t) from the ODE. 
-                            The rendered view is connected to the ODE by an interpolation approximation, which is then used to obtain the gradient.
-                        </p>
+                          In 3D, however, the 3D shape may not precisely follow the 2D DDIM ODE. 
+                          To address this, we propose an approximation (via interpolation) 
+                          to adapt this formulation for 3D generation. Specifically, a unique ODE starting point, ε, 
+                          is assigned to each 3D shape throughout the optimization process. 
+                          Renderings from different views are assumed to lie on the view-conditioned ODE trajectory, 
+                          starting from ε. At each iteration, DSD simulates the corresponding ODE up to time t and 
+                          obtains the noise prediction, ε(t), from the ODE. The rendered view is linked to the ODE through an 
+                          interpolation approximation, which is then used to compute the gradient.
                     </div>
                     <center>
                         <img src="./images/method.png" class="img-responsive" alt="overview" width="80%"
@@ -265,7 +269,7 @@
                 <div class="content has-text-justified">
                     <p>
                         We compare our method with other score distllation methods. DSD generates more diverse samples while
-                        have similar (better) quality.
+                        achieving similar (better) quality.
                     </p>
                 </div>
                 <div class="glide" id="dynamic-carousel">
@@ -361,8 +365,8 @@
                 <div class="content has-text-justified">
                     <p>
                         Given an input image, the geometry of the underlying 3D shape is highly undetermined. 
-                        With an image and camera-conditioned DM, DSD (Ours) reconstructs high-frequency details of the object with diverse interpretations of the underlying geometry.
-                        The default distillation adopted by Zero-1-to-3 does not yield multi-modal generations and has limited details.
+                        With a DM conditioned on image and camera, DSD (Ours) reconstructs high-frequency details of the object with diverse interpretations of the underlying geometry.
+                        The default distillation adopted by Zero-1-to-3 does not produce multi-modal reconstructs and has limited details.
                     </p>
                 </div>
                 
@@ -381,7 +385,7 @@
                 <h2 class="title is-3">Diverse Generation with MVDream</h2>
                 <div class="content has-text-justified">
                     <p>
-                        By using a camera-aware diffusion model, such as MVDream, our method can generate diverse 3D shapes without Janus effects.
+                        By using a camera-aware multiview diffusion model, such as MVDream, our method can generate diverse 3D shapes without Janus effects.
                     </p>
                 </div>
                 
@@ -454,7 +458,7 @@
     <p>Our code is built on top of <a href="https://lukoianov.com/sdi/" target="_blank">SDI</a> and <a href="https://github.com/threestudio-project/threestudio" target="_blank">Threestudio</a>. 
      We sincerely appreciate the authors' efforts in their code, and especially Artem Lukoianov's helpful feedback.</p>
     
-    <p> We also appriciate the helpful discussions with Lucas Wu, Sheng-Yu Wang, Yehonathan Litman and Yufei Ye, 
+    <p> We also appriciate the helpful discussions with Lucas Wu, Ye Hang, Sheng-Yu Wang, Yehonathan Litman and Yufei Ye, 
       and the help from Qitao Zhao, Himangi Mittal and Sungjae Park in making the webpage. </p>
 
     <p> This work was supported in part by NSF Award IIS-2345610 and a CISCO gift award. </p>
