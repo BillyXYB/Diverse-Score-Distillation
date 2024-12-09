@@ -1,9 +1,13 @@
 <p align="center">
   This is the official implementation of the paper
 </p>
-<p align="center" style="font-size: 24px; font-weight: bold;">
-Diverse Score Distillation
-</p>
+
+<div id="user-content-toc" display="inline">
+  <ul align="center" style="list-style: none;">
+    <summary>
+      <h1>Diverse Score Distillation</h1>
+    </summary>
+  </ul>
 
 <p align="center">
     <a class="active text-decoration-none" href="https://yanbo-xu.netlify.app/">Yanbo Xu</a><sup> 1</sup>,  &nbsp;
