@@ -22,9 +22,9 @@
 </p>
 
 <p align="center">
-  <!-- <a href="">
-    <img src="https://img.shields.io/badge/logo=arXiv">
-  </a> -->
+ <a href="https://arxiv.org/abs/2412.06780">
+    <img src="https://img.shields.io/badge/arXiv-2412.06780-b31b1b.svg?logo=arXiv">
+  </a>
   <a href="https://billyxyb.github.io/Diverse-Score-Distillation/">
     <img src="https://img.shields.io/badge/dsd-project page-b78601.svg">
   </a>
@@ -68,4 +68,20 @@ python launch.py --config configs/dsd.yaml --train --gpu 0 system.prompt_process
 If VRM is limitted, we recommend reducing the rendering resolution by running command (tested on GPUs with 24GB of VRAM):
 ```sh
 python launch.py --config configs/dsd_low_res.yaml --train --gpu 0 system.prompt_processor.prompt="a toy robot" --seed 0
+```
+
+## Citing
+
+If you find our project useful, please consider citing it:
+
+```
+@misc{xu2024diversescoredistillation,
+      title={Diverse Score Distillation}, 
+      author={Yanbo Xu and Jayanth Srinivasa and Gaowen Liu and Shubham Tulsiani},
+      year={2024},
+      eprint={2412.06780},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.06780}, 
+}
 ```
