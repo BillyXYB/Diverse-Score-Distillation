@@ -75,13 +75,11 @@ python launch.py --config configs/dsd_low_res.yaml --train --gpu 0 system.prompt
 If you find our project useful, please consider citing it:
 
 ```
-@misc{xu2024diversescoredistillation,
-      title={Diverse Score Distillation}, 
-      author={Yanbo Xu and Jayanth Srinivasa and Gaowen Liu and Shubham Tulsiani},
-      year={2024},
-      eprint={2412.06780},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2412.06780}, 
+@article{xu2024diversescoredistillation,
+  title={Diverse Score Distillation}, 
+  author={Yanbo Xu and Jayanth Srinivasa and Gaowen Liu and Shubham Tulsiani},
+  journal={arXiv preprint arXiv:2412.06780},
+  year={2024}
 }
+
 ```
