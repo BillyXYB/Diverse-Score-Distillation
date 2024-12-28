@@ -40,7 +40,7 @@
 
 ## Installation
 
-This project is based on [Threestudio](https://github.com/threestudio-project/threestudio). Please see the installation gudie from [Threestudio](https://github.com/threestudio-project/threestudio).
+This project is based on [Threestudio](https://github.com/threestudio-project/threestudio). Please see the installation guide from [Threestudio](https://github.com/threestudio-project/threestudio).
 
 ## Run 3D Generation
 
